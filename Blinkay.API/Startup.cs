@@ -1,3 +1,5 @@
+using Blinkay.Domain.Interfaces;
+using Blinkay.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,10 @@ namespace Blinkay.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
+
+            // Add application services.
+            services.Add(new ServiceDescriptor(typeof(IMySqlService), new MySqlService()));
+            services.Add(new ServiceDescriptor(typeof(IPosgreeService), new PosgreeService()));
 
             // Add framework services.
             services.AddMvc(options =>

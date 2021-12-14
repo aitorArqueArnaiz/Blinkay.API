@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Blinkay.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace Blinkay.API.Controllers
@@ -10,9 +12,13 @@ namespace Blinkay.API.Controllers
     {
         private readonly ILogger<MySqlController> _logger;
 
-        public MySqlController(ILogger<MySqlController> logger)
+        private IMySqlService _sqlService;
+
+        public MySqlController(ILogger<MySqlController> logger,
+                                IMySqlService SqlService)
         {
             _logger = logger;
+            _sqlService = SqlService ?? throw new ArgumentNullException(nameof(SqlService));
         }
 
         [HttpGet("get")]
