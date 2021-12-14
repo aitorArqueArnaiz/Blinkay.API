@@ -6,11 +6,11 @@ namespace Blinkay.API.Controllers
 {
     [ApiController]
     [Route("blinkay/api/v1/")]
-    public class WeatherForecastController : ControllerBase
+    public class MySqlController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<MySqlController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public MySqlController(ILogger<MySqlController> logger)
         {
             _logger = logger;
         }

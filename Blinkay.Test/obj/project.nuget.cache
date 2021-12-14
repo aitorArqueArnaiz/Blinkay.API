@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+w6VMfQWxqwSRB4lbQiQYc/qglDo/N89sW49zttSNvzymTFsA/o+r/rG7+ske52d0hXz+1Kf3QqEsZrb/4EnBw==",
+  "dgSpecHash": "cvxX2uQQKyF27j3+rhPzlNYa4msRnNaJvvbqBvpUEEGJVkOcafla2LWFoKp1g1GdkHqOcWAo7lEdjZWSwT20mQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\aitor\\Downloads\\BlinkayAPI\\Blinkay.API\\Blinkay.Test\\Blinkay.Test.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\aitor\\.nuget\\packages\\nunit\\3.13.1\\nunit.3.13.1.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\nunit3testadapter\\3.17.0\\nunit3testadapter.3.17.0.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
+    "C:\\Users\\aitor\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

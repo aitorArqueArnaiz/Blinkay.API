@@ -32,6 +32,15 @@ namespace Blinkay.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
+
+            // Add framework services.
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ErrorHandlingFilter());
+            });
+
+            // Add logging service
+            services.AddLogging(configure => configure.AddConsole());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

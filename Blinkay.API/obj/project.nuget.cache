@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "fkvGI5JeQQ1LjBwY9hBCrsX9mo0cv4Ad9l5htn8AYVCYP2NPqO5L2IGGsNe3MPLC8baHdP+QJ/7030DAPjqdrA==",
+  "dgSpecHash": "rBruE6RHvp2cNloUej/pr5EZi4Snx5a7mtR6G69X/4O+nKldL+uTL4gomWfjuZ8GqhFKwOT54Fe0XwiIdcu8hA==",
   "success": true,
   "projectFilePath": "C:\\Users\\aitor\\Downloads\\BlinkayAPI\\Blinkay.API\\Blinkay.API\\Blinkay.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aitor\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.11.1\\microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
+    "C:\\Users\\aitor\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\aitor\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

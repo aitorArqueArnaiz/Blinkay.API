@@ -116,3 +116,4 @@ C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Test\obj\Debug\net5.0\Bl
 C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Test\obj\Debug\net5.0\ref\Blinkay.Test.dll
 C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Test\obj\Debug\net5.0\Blinkay.Test.pdb
 C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Test\obj\Debug\net5.0\Blinkay.Test.genruntimeconfig.cache
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Test\bin\Debug\net5.0\Serilog.dll
