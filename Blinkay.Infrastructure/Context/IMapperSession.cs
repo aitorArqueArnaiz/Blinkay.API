@@ -31,7 +31,7 @@ public interface IMapperSession
     /// </summary>
     /// <param name="entity"></param>
     /// <returns></returns>
-    Task Save(User entity);
+    Task SaveOrUpdate(User entity);
 
     /// <summary>
     /// Deletes an existing transaction.

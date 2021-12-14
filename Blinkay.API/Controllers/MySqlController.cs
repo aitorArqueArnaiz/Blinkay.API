@@ -25,18 +25,26 @@ namespace Blinkay.API.Controllers
         }
 
         [HttpPost("MySql-insertion")]
-        public async Task<IActionResult> MySQLInsertion([FromHeader] AddEntityrequest request)
+        public async Task<IActionResult> MySQLInsertion([FromBody] AddEntityRequest request)
         {
             try
             {
+                Task[] taskArray = new Task[request.NumThreads];
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                for (int i = 0; i <= request.NumThreads; ++i)
+                for (int i = 0; i < taskArray.Length; i++)
                 {
-                    await Task.Run(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
+                    taskArray[i] = Task.Factory.StartNew(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
+                    taskArray[i].Wait();
                 }
+                //Task.WaitAll(taskArray);
                 sw.Stop();
-                return Ok(sw.ElapsedMilliseconds);
+
+                var response = new AddEntityResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
             catch (Exception error)
             {
@@ -47,24 +55,31 @@ namespace Blinkay.API.Controllers
         }
 
         [HttpPatch("MySql-select")]
-        public async Task<IActionResult> MySQLSelectPlusUpdate(int iNumRegistries, int iNumThreads)
+        public async Task<IActionResult> MySQLSelectPlusUpdate([FromBody] SelectPlusUpdateRequest request)
         {
             try
             {
+                Task[] taskArray = new Task[request.NumThreads];
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
+                for (int i = 0; i < taskArray.Length; i++)
+                {
+                    taskArray[i] = Task.Factory.StartNew(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
+                }
+                Task.WaitAll(taskArray);
                 sw.Stop();
 
-                return Ok(0);
+                var response = new AddEntityResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
             catch (Exception error)
             {
                 // log exception here
-                _logger.LogError($"Exception ocurred during MySql select plus update operation {error.Message}");
+                _logger.LogError($"Exception ocurred during MySql insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
 

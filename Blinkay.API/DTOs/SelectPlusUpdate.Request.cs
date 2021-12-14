@@ -1,7 +1,11 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 namespace Blinkay.API.DTOs
 {
-    public class AddEntityRequest
+    public class SelectPlusUpdateRequest
     {
         /// <summary>
         /// Number of registers to be added into DB repository.

@@ -40,7 +40,7 @@ public class NHibernateMapperSession : IMapperSession
         }
     }
 
-    public async Task Save(User entity)
+    public async Task SaveOrUpdate(User entity)
     {
         await _session.SaveOrUpdateAsync(entity);
     }

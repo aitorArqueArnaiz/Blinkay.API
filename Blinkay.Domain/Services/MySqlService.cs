@@ -15,15 +15,15 @@ namespace Blinkay.Domain.Services
         }
         public async void MySQLInsertion(int iNumRegistries)
         {
-            for(int i = 0; i <= iNumRegistries; ++i)
+            for(int i = 0; i < iNumRegistries; i++)
             {
                 try
                 {
                     _session.BeginTransaction();
-                    await _session.Save(new User());
+                    await _session.SaveOrUpdate(new User());
                     await _session.Commit();
                 }
-                catch
+                catch (Exception error)
                 {
                     // log exception here
                     await _session.Rollback();
@@ -38,7 +38,24 @@ namespace Blinkay.Domain.Services
 
         public async void MySQLSelectPlusUpdate(int iNumRegistries)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < iNumRegistries; i++)
+            {
+                try
+                {
+                    _session.BeginTransaction();
+                    await _session.SaveOrUpdate(new User());
+                    await _session.Commit();
+                }
+                catch (Exception error)
+                {
+                    // log exception here
+                    await _session.Rollback();
+                }
+                finally
+                {
+                    _session.CloseTransaction();
+                }
+            }
         }
 
         public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
