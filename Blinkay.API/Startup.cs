@@ -35,6 +35,10 @@ namespace Blinkay.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
 
+            var connStr = Configuration.GetConnectionString("DefaultConnection");
+            services.AddNHibernate(connStr);
+
+
             // Add application services.
             services.Add(new ServiceDescriptor(typeof(IMySqlService), new MySqlService()));
             services.Add(new ServiceDescriptor(typeof(IPosgreeService), new PosgreeService()));

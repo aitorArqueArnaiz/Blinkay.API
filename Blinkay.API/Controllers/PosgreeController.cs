@@ -11,12 +11,17 @@ namespace Blinkay.API.Controllers
     public class PosgreeController : ControllerBase
     {
         private readonly ILogger<PosgreeController> _logger;
+
         private IPosgreeService _posgreeService;
 
+        private readonly IMapperSession _session;
+
         public PosgreeController(ILogger<PosgreeController> logger,
-                                  IPosgreeService posgreeService)
+                                  IPosgreeService posgreeService,
+                                  IMapperSession session)
         {
             _logger = logger;
+            _session = session;
             _posgreeService = posgreeService ?? throw new ArgumentNullException(nameof(posgreeService));
         }
 

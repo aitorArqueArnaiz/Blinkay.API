@@ -14,10 +14,14 @@ namespace Blinkay.API.Controllers
 
         private IMySqlService _sqlService;
 
+        private readonly IMapperSession _session;
+
         public MySqlController(ILogger<MySqlController> logger,
-                                IMySqlService SqlService)
+                                IMySqlService SqlService,
+                                IMapperSession session)
         {
             _logger = logger;
+            _session = session;
             _sqlService = SqlService ?? throw new ArgumentNullException(nameof(SqlService));
         }
 
