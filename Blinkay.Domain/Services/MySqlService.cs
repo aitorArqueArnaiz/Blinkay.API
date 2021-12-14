@@ -44,7 +44,9 @@ namespace Blinkay.Domain.Services
                 try
                 {
                     var rnd = new Random();
-                    var rndUser = this._session.Users.Where(u => u.Id == rnd.Next(1, this._session.Users.Count())).LastOrDefault();
+                    var rndId = rnd.Next(1, this._session.Users.Count());
+                    var rndUser = this._session.Users.Where(u => u.Id == rndId).FirstOrDefault();
+                    rndUser.Info = "";
 
                     _session.BeginTransaction();
                     await _session.SaveOrUpdate(rndUser);

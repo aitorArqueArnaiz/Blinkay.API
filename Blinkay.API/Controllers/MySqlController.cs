@@ -51,7 +51,7 @@ namespace Blinkay.API.Controllers
             }
         }
 
-        [HttpPatch("MySql-select")]
+        [HttpPatch("MySql-select-plus-update")]
         public async Task<IActionResult> MySQLSelectPlusUpdate([FromBody] SelectPlusUpdateRequest request)
         {
             try
@@ -78,7 +78,7 @@ namespace Blinkay.API.Controllers
             }
         }
 
-        [HttpPatch("MySql-select-plus-insertion")]
+        [HttpPatch("MySql-select-plus-update-plus-insertion")]
         public async Task<IActionResult> MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
         {
             try
