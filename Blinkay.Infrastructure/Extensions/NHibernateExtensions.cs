@@ -6,7 +6,7 @@ using NHibernate.Mapping.ByCode;
 
 public static class NHibernateExtensions
 {
-    public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
+    public static IServiceCollection AddNHibernateMySql(this IServiceCollection services, string connectionString)
     {
         var mapper = new ModelMapper();
         mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);

@@ -1,18 +1,10 @@
-using Blinkay.Domain.Interfaces;
-using Blinkay.Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Blinkay.API
 {
@@ -35,7 +27,8 @@ namespace Blinkay.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
 
-            services.AddNHibernate("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
+            services.AddNHibernateMySql("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
+            //services.AddNHibernatePostgre("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;");
 
             // Add framework services.
             services.AddMvc(options =>

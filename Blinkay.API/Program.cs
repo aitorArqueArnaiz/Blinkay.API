@@ -22,8 +22,7 @@ namespace Blinkay.API
             if (!File.Exists(path))
             {
                 // Create a file to write to.
-                string createText = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=TestDB;"
-                                    + "Integrated Security=true;" + Environment.NewLine;
+                string createText = @"server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay" + Environment.NewLine;
                 File.WriteAllText(path, createText, Encoding.UTF8);
             }
 
