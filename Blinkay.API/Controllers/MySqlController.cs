@@ -64,7 +64,7 @@ namespace Blinkay.API.Controllers
                 }
                 sw.Stop();
 
-                var response = new AddEntityResponse()
+                var response = new SelectPlusUpdateResponse()
                 {
                     TimeOfExecution = sw.ElapsedMilliseconds
                 };
@@ -79,23 +79,29 @@ namespace Blinkay.API.Controllers
         }
 
         [HttpPatch("MySql-select-plus-update-plus-insertion")]
-        public async Task<IActionResult> MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
+        public async Task<IActionResult> MySQLSelectPlusUpdatePlusInsertion([FromBody] SelectPlusUpdatePlusInsertionRequest request)
         {
             try
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
+                for (int i = 0; i < request.NumThreads; i++)
+                {
+                    await Task.Factory.StartNew(() => this._mySqlService.MySQLSelectPlusUpdatePlusInsertion(request.NumRegistres));
+                }
                 sw.Stop();
-                return Ok(0);
+
+                var response = new SelectPlusUpdatePlusInsertionResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
             catch (Exception error)
             {
                 // log exception here
                 _logger.LogError($"Exception ocurred during MySql select plus update plus insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
     }
