@@ -6,7 +6,7 @@ using NHibernate.Mapping.ByCode;
 
 public static class NHibernateExtensions
 {
-    public static IServiceCollection AddNHibernateMySql(this IServiceCollection services, string connectionString)
+    public static IServiceCollection AddNHibernateMySql(this IServiceCollection services, string connectionStringMySql, string connectionStringPostgre)
     {
         var mapper = new ModelMapper();
         mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);
@@ -16,7 +16,7 @@ public static class NHibernateExtensions
         configuration.DataBaseIntegration(c =>
         {
             c.Dialect<MySQLDialect>();
-            c.ConnectionString = connectionString;
+            c.ConnectionString = connectionStringMySql;
             c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
             c.SchemaAction = SchemaAutoAction.Validate;
             c.LogFormattedSql = true;
