@@ -1,0 +1,17 @@
+bin
+obj
+
+.vs
+.git
+
+Blinkay.API/bin
+Blinkay.API/obj
+
+Blinkay.Domain/bin
+Blinkay.Domain/obj
+
+Blinkay.Infrastructure/bin
+Blinkay.Infrastructure/obj
+
+Blinkay.Test/bin
+Blinkay.Test/obj

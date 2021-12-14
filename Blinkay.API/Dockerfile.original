@@ -8,8 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Blinkay.API/Blinkay.API.csproj", "Blinkay.API/"]
-COPY ["Blinkay.Domain/Blinkay.Domain.csproj", "Blinkay.Domain/"]
-COPY ["Blinkay.Infrastructure/Blinkay.Infrastructure.csproj", "Blinkay.Infrastructure/"]
 RUN dotnet restore "Blinkay.API/Blinkay.API.csproj"
 COPY . .
 WORKDIR "/src/Blinkay.API"
