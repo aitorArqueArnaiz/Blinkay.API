@@ -1,0 +1,15 @@
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\Blinkay.Domain.deps.json
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\Blinkay.Domain.dll
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\ref\Blinkay.Domain.dll
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\Blinkay.Domain.pdb
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\Blinkay.Infrastructure.dll
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\bin\Debug\net5.0\Blinkay.Infrastructure.pdb
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.csproj.AssemblyReference.cache
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.AssemblyInfoInputs.cache
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.AssemblyInfo.cs
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.csproj.CopyComplete
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.dll
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\ref\Blinkay.Domain.dll
+C:\Users\aitor\Downloads\BlinkayAPI\Blinkay.API\Blinkay.Domain\obj\Debug\net5.0\Blinkay.Domain.pdb

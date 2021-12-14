@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Blinkay.Domain/1.0.0": {
+        "dependencies": {
+          "Blinkay.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "Blinkay.Domain.dll": {}
+        }
+      },
+      "Blinkay.Infrastructure/1.0.0": {
+        "runtime": {
+          "Blinkay.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Blinkay.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Blinkay.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
