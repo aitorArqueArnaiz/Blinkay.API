@@ -9,5 +9,19 @@ namespace Blinkay.Domain.Services
 {
     public class PosgreeService : IPosgreeService
     {
+        public int PGInsertion(int iNumRegistries, int iNumThreads)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int PGSelectPlusUpdate(int iNumRegistries, int iNumThreads)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int PGSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
