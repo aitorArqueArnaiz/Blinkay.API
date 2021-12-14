@@ -1,4 +1,5 @@
 ﻿using Blinkay.Domain.Interfaces;
+using Blinkay.Infrastructure.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,19 +29,73 @@ namespace Blinkay.API.Controllers
         [HttpPost("pg-insertion")]
         public async Task<IActionResult> PGInsertion(int iNumRegistries, int iNumThreads)
         {
-            return Ok(0);
+            try
+            {
+                _session.BeginTransaction();
+
+                await _session.Save(new User());
+                await _session.Commit();
+
+                return Ok(0);
+            }
+            catch
+            {
+                // log exception here
+                await _session.Rollback();
+                return BadRequest();
+            }
+            finally
+            {
+                _session.CloseTransaction();
+            }
         }
 
         [HttpPatch("pg-select")]
         public async Task<IActionResult> PGSelectPlusUpdate(int iNumRegistries, int iNumThreads)
         {
-            return Ok(0);
+            try
+            {
+                _session.BeginTransaction();
+
+                await _session.Save(new User());
+                await _session.Commit();
+
+                return Ok(0);
+            }
+            catch
+            {
+                // log exception here
+                await _session.Rollback();
+                return BadRequest();
+            }
+            finally
+            {
+                _session.CloseTransaction();
+            }
         }
 
         [HttpPatch("pg-select-plus-insertion")]
         public async Task<IActionResult> PGSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
         {
-            return Ok(0);
+            try
+            {
+                _session.BeginTransaction();
+
+                await _session.Save(new User());
+                await _session.Commit();
+
+                return Ok(0);
+            }
+            catch
+            {
+                // log exception here
+                await _session.Rollback();
+                return BadRequest();
+            }
+            finally
+            {
+                _session.CloseTransaction();
+            }
         }
     }
 }
