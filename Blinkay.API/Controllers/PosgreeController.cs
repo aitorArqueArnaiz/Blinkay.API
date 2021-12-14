@@ -20,10 +20,22 @@ namespace Blinkay.API.Controllers
             _posgreeService = posgreeService ?? throw new ArgumentNullException(nameof(posgreeService));
         }
 
-        [HttpGet("get")]
-        public async Task<IActionResult> Get()
+        [HttpPost("pg-insertion")]
+        public async Task<IActionResult> PGInsertion(int iNumRegistries, int iNumThreads)
         {
-            return Ok();
+            return Ok(0);
+        }
+
+        [HttpPatch("pg-select")]
+        public async Task<IActionResult> PGSelectPlusUpdate(int iNumRegistries, int iNumThreads)
+        {
+            return Ok(0);
+        }
+
+        [HttpPatch("pg-select-plus-insertion")]
+        public async Task<IActionResult> PGSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
+        {
+            return Ok(0);
         }
     }
 }

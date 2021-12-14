@@ -21,10 +21,22 @@ namespace Blinkay.API.Controllers
             _sqlService = SqlService ?? throw new ArgumentNullException(nameof(SqlService));
         }
 
-        [HttpGet("get")]
-        public async Task<IActionResult> Get()
+        [HttpPost("MySql-insertion")]
+        public async Task<IActionResult> MySQLInsertion(int iNumRegistries, int iNumThreads)
         {
-            return Ok();
+            return Ok(0);
+        }
+
+        [HttpPatch("MySql-select")]
+        public async Task<IActionResult> MySQLSelectPlusUpdate(int iNumRegistries, int iNumThreads)
+        {
+            return Ok(0);
+        }
+
+        [HttpPatch("MySql-select-plus-insertion")]
+        public async Task<IActionResult> MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
+        {
+            return Ok(0);
         }
     }
 }
