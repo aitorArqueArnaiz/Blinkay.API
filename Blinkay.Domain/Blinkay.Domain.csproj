@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blinkay.Infrastructure\Blinkay.Infrastructure.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <ProjectReference Include="..\Blinkay.Infrastructure\Blinkay.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
