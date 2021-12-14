@@ -2,6 +2,7 @@
 using Blinkay.Infrastructure.Entities;
 using NHibernate.Linq;
 using System;
+using System.Linq;
 
 namespace Blinkay.Domain.Services
 {
@@ -42,8 +43,11 @@ namespace Blinkay.Domain.Services
             {
                 try
                 {
+                    var rnd = new Random();
+                    var rndUser = this._session.Users.Where(u => u.Id == rnd.Next(1, this._session.Users.Count())).LastOrDefault();
+
                     _session.BeginTransaction();
-                    await _session.SaveOrUpdate(new User());
+                    await _session.SaveOrUpdate(rndUser);
                     await _session.Commit();
                 }
                 catch (Exception error)
