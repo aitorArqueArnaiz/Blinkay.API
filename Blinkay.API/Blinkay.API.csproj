@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Blinkay.Domain\Blinkay.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+  </ItemGroup>
+
 </Project>
