@@ -29,15 +29,12 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                Task[] taskArray = new Task[request.NumThreads];
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                for (int i = 0; i < taskArray.Length; i++)
+                for (int i = 0; i < request.NumThreads; i++)
                 {
-                    taskArray[i] = Task.Factory.StartNew(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
-                    taskArray[i].Wait();
+                    await Task.Factory.StartNew(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
                 }
-                //Task.WaitAll(taskArray);
                 sw.Stop();
 
                 var response = new AddEntityResponse()
@@ -59,14 +56,12 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                Task[] taskArray = new Task[request.NumThreads];
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                for (int i = 0; i < taskArray.Length; i++)
+                for (int i = 0; i < request.NumThreads; i++)
                 {
-                    taskArray[i] = Task.Factory.StartNew(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
+                    await Task.Factory.StartNew(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
                 }
-                Task.WaitAll(taskArray);
                 sw.Stop();
 
                 var response = new AddEntityResponse()
