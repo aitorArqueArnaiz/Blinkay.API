@@ -10,15 +10,15 @@ public class UserMap : ClassMapping<User>
         Id(x => x.Id, x =>
         {
             x.Generator(Generators.Increment);
-            x.Type(NHibernateUtil.Int64);
+            x.Type(NHibernateUtil.Int32);
             x.Column("iduser");
-            x.UnsavedValue(0);
         });
 
         Property(b => b.Info, x =>
         {
             x.Length(500);
             x.Type(NHibernateUtil.StringClob);
+            x.Column("userinfo");
             x.NotNullable(true);
         });
 

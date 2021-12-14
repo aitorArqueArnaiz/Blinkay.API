@@ -35,7 +35,7 @@ namespace Blinkay.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
 
-            services.AddNHibernate(string.Empty);
+            services.AddNHibernate("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
 
             // Add framework services.
             services.AddMvc(options =>

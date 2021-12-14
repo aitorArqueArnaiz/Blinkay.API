@@ -7,13 +7,13 @@ namespace Blinkay.Infrastructure.Entities
         /// <summary>
         /// user table primary key.
         /// </summary>
-        [JsonProperty("Id")]
+        [JsonProperty("iduser")]
         public virtual int Id { get; set; }
 
         /// <summary>
         /// User table information string/Json.
         /// </summary>
-        [JsonProperty("Info")]
+        [JsonProperty("userinfo")]
         public virtual string Info { get; set; }
     }
 }

@@ -15,7 +15,7 @@ public static class NHibernateExtensions
         var configuration = new Configuration();
         configuration.DataBaseIntegration(c =>
         {
-            c.Dialect<MsSql2012Dialect>();
+            c.Dialect<MySQLDialect>();
             c.ConnectionString = connectionString;
             c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
             c.SchemaAction = SchemaAutoAction.Validate;
