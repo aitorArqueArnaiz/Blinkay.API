@@ -40,5 +40,5 @@ public interface IMapperSession
     /// <returns></returns>
     Task Delete(User entity);
 
-    IQueryable<User> Books { get; }
+    IQueryable<User> Users { get; }
 }

@@ -1,6 +1,6 @@
-﻿using Blinkay.Domain.Interfaces;
+﻿using Blinkay.API.DTOs;
+using Blinkay.Domain.Interfaces;
 using Blinkay.Domain.Services;
-using Blinkay.Infrastructure.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,30 +14,28 @@ namespace Blinkay.API.Controllers
     {
         private readonly ILogger<MySqlController> _logger;
 
-        private IMySqlService _sqlService;
+        private IMySqlService _mySqlService;
 
         public MySqlController(ILogger<MySqlController> logger,
                                IMapperSession session)
         {
             _logger = logger;
-            _sqlService = new MySqlService(session);
+            _mySqlService = new MySqlService(session);
         }
 
         [HttpPost("MySql-insertion")]
-        public async Task<IActionResult> MySQLInsertion(int iNumRegistries, int iNumThreads)
+        public async Task<IActionResult> MySQLInsertion([FromHeader] AddEntityrequest request)
         {
             try
             {
-
+                this._mySqlService.MySQLInsertion(request.NumRegistres);
                 return Ok(0);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during MySql insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
 

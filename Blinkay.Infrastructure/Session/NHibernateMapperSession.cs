@@ -13,7 +13,8 @@ public class NHibernateMapperSession : IMapperSession
         _session = session;
     }
 
-    public IQueryable<User> Books => _session.Query<User>();
+    public IQueryable<User> Users => _session.Query<User>();
+
 
     public void BeginTransaction()
     {
