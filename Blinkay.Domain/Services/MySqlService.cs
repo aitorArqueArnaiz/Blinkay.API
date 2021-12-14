@@ -42,12 +42,21 @@ namespace Blinkay.Domain.Services
         {
             for (int i = 0; i < iNumRegistries; i++)
             {
+                this.MySQLInsertion(iNumRegistries);
+                this.MySQLSelectPlusUpdate(iNumRegistries);
+            }
+        }
+
+        public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
+        {
+            for (int i = 0; i < iNumRegistries; i++)
+            {
                 try
                 {
                     var rnd = new Random();
                     var rndId = rnd.Next(1, this._session.Users.Count() - 1);
                     var rndUser = this._session.Users.Where(u => u.Id == rndId).FirstOrDefault();
-                    while(rndUser == null)
+                    while (rndUser == null)
                     {
                         rndId = rnd.Next(1, this._session.Users.Count() - 1);
                         rndUser = this._session.Users.Where(u => u.Id == rndId).FirstOrDefault();
@@ -68,11 +77,6 @@ namespace Blinkay.Domain.Services
                     _session.CloseTransaction();
                 }
             }
-        }
-
-        public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
-        {
-            throw new NotImplementedException();
         }
     }
 }
