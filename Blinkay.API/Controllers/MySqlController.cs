@@ -4,6 +4,7 @@ using Blinkay.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Blinkay.API.Controllers
@@ -28,8 +29,14 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                this._mySqlService.MySQLInsertion(request.NumRegistres);
-                return Ok(0);
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                for (int i = 0; i < request.NumThreads; ++i)
+                {
+                    await Task.Run(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
+                }
+                sw.Stop();
+                return Ok(sw.ElapsedMilliseconds);
             }
             catch (Exception error)
             {
@@ -44,12 +51,16 @@ namespace Blinkay.API.Controllers
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                sw.Stop();
 
                 return Ok(0);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during MySql select plus update operation {error.Message}");
                 return BadRequest();
             }
             finally
@@ -62,11 +73,15 @@ namespace Blinkay.API.Controllers
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                sw.Stop();
                 return Ok(0);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during MySql select plus update plus insertion operation {error.Message}");
                 return BadRequest();
             }
             finally
