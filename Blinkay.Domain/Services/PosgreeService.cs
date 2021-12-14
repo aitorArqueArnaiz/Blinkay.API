@@ -9,6 +9,13 @@ namespace Blinkay.Domain.Services
 {
     public class PosgreeService : IPosgreeService
     {
+        private IMapperSession _session;
+
+        public PosgreeService(IMapperSession session)
+        {
+            this._session = session;
+        }
+
         public int PGInsertion(int iNumRegistries, int iNumThreads)
         {
             throw new NotImplementedException();

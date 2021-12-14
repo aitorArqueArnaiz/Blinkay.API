@@ -37,11 +37,6 @@ namespace Blinkay.API
 
             services.AddNHibernate(string.Empty);
 
-
-            // Add application services.
-            services.Add(new ServiceDescriptor(typeof(IMySqlService), new MySqlService()));
-            services.Add(new ServiceDescriptor(typeof(IPosgreeService), new PosgreeService()));
-
             // Add framework services.
             services.AddMvc(options =>
             {

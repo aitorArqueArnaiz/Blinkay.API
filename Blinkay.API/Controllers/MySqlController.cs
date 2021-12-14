@@ -1,4 +1,5 @@
 ﻿using Blinkay.Domain.Interfaces;
+using Blinkay.Domain.Services;
 using Blinkay.Infrastructure.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -15,15 +16,11 @@ namespace Blinkay.API.Controllers
 
         private IMySqlService _sqlService;
 
-        private readonly IMapperSession _session;
-
         public MySqlController(ILogger<MySqlController> logger,
-                                IMySqlService SqlService,
-                                IMapperSession session)
+                               IMapperSession session)
         {
             _logger = logger;
-            _session = session;
-            _sqlService = SqlService ?? throw new ArgumentNullException(nameof(SqlService));
+            _sqlService = new MySqlService(session);
         }
 
         [HttpPost("MySql-insertion")]
@@ -31,22 +28,16 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                _session.BeginTransaction();
-
-                await _session.Save(new User());
-                await _session.Commit();
 
                 return Ok(0);
             }
             catch
             {
                 // log exception here
-                await _session.Rollback();
                 return BadRequest();
             }
             finally
             {
-                _session.CloseTransaction();
             }
         }
 
@@ -55,22 +46,16 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                _session.BeginTransaction();
-
-                await _session.Save(new User());
-                await _session.Commit();
 
                 return Ok(0);
             }
             catch
             {
                 // log exception here
-                await _session.Rollback();
                 return BadRequest();
             }
             finally
             {
-                _session.CloseTransaction();
             }
         }
 
@@ -79,22 +64,15 @@ namespace Blinkay.API.Controllers
         {
             try
             {
-                _session.BeginTransaction();
-
-                await _session.Save(new User());
-                await _session.Commit();
-
                 return Ok(0);
             }
             catch
             {
                 // log exception here
-                await _session.Rollback();
                 return BadRequest();
             }
             finally
             {
-                _session.CloseTransaction();
             }
         }
     }
