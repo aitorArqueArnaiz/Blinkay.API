@@ -31,7 +31,7 @@ namespace Blinkay.API.Controllers
             {
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                for (int i = 0; i < request.NumThreads; ++i)
+                for (int i = 0; i <= request.NumThreads; ++i)
                 {
                     await Task.Run(() => this._mySqlService.MySQLInsertion(request.NumRegistres));
                 }

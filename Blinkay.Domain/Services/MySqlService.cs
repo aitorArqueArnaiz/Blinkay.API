@@ -15,7 +15,7 @@ namespace Blinkay.Domain.Services
         }
         public async void MySQLInsertion(int iNumRegistries)
         {
-            for(int i = 0; i < iNumRegistries; ++i)
+            for(int i = 0; i <= iNumRegistries; ++i)
             {
                 try
                 {
