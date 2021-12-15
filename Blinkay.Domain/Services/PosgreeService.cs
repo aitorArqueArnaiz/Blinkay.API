@@ -18,6 +18,7 @@ namespace Blinkay.Domain.Services
 
         public async Task<User> PGInsertion(int iNumRegistries)
         {
+            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             User user = null;
             for (int i = 0; i < iNumRegistries; i++)
             {
@@ -35,7 +36,7 @@ namespace Blinkay.Domain.Services
             return user;
         }
 
-        public async void PGSelectPlusUpdate(int iNumRegistries)
+        public async Task PGSelectPlusUpdate(int iNumRegistries)
         {
             if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
@@ -64,6 +65,7 @@ namespace Blinkay.Domain.Services
 
         public async  void PGSelectPlusUpdatePlusInsertion(int iNumRegistries)
         {
+            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
             {
                 await this.PGInsertion(iNumRegistries);

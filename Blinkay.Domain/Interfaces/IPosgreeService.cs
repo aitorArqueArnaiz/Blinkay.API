@@ -17,7 +17,7 @@ namespace Blinkay.Domain.Interfaces
         /// </summary>
         /// <param name="iNumRegistries"></param>
         /// <returns></returns>
-        void PGSelectPlusUpdate(int iNumRegistries);
+        Task PGSelectPlusUpdate(int iNumRegistries);
 
         /// <summary>
         /// Select plus update plus insertion use case.
