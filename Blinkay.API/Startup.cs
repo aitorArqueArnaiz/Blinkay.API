@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 
 namespace Blinkay.API
 {
@@ -27,8 +29,8 @@ namespace Blinkay.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blinkay.API", Version = "v1" });
             });
 
-            services.AddNHibernateMySql("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
-            //services.AddNHibernatePG("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;");
+            services.AddNHibernate("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
+            //services.AddNHibernatePg("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;");
 
             // Add framework services.
             services.AddMvc(options =>
@@ -38,6 +40,14 @@ namespace Blinkay.API
 
             // Add logging service
             services.AddLogging(configure => configure.AddConsole());
+
+            var connectionString = Configuration["Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;"];
+            var dbPassword = Configuration["aA2221xT"];
+            var builder = new NpgsqlConnectionStringBuilder(connectionString)
+            {
+                Password = dbPassword
+            };
+            services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builder.ConnectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

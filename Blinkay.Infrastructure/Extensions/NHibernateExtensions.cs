@@ -6,56 +6,33 @@ using NHibernate.Mapping.ByCode;
 
 public static class NHibernateExtensions
 {
-    public static IServiceCollection AddNHibernateMySql(this IServiceCollection services, string connectionString)
+    private static Configuration _configuration = new Configuration();
+    public static IServiceCollection AddNHibernate(this IServiceCollection services, string connectionString)
     {
         var mapper = new ModelMapper();
         mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);
         HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+        // Add table mapping
+        _configuration.AddMapping(domainMapping);
 
-        var configuration = new Configuration();
-        configuration.DataBaseIntegration(c =>
+        // MySql configuration
+        _configuration.DataBaseIntegration(c =>
         {
             c.Dialect<MySQLDialect>();
             c.ConnectionString = connectionString;
             c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-            c.SchemaAction = SchemaAutoAction.Validate;
             c.LogFormattedSql = true;
             c.LogSqlInConsole = true;
         });
-        configuration.AddMapping(domainMapping);
 
-        var sessionFactory = configuration.BuildSessionFactory();
 
+        // create session factory
+        var sessionFactory = _configuration.BuildSessionFactory();
         services.AddSingleton(sessionFactory);
-        services.AddScoped(factory => sessionFactory.OpenSession());
-        services.AddScoped<IMapperSession, NHibernateMapperSession>();
 
-        return services;
-    }
-
-    public static IServiceCollection AddNHibernatePG(this IServiceCollection services, string connectionString)
-    {
-        var mapper = new ModelMapper();
-        mapper.AddMappings(typeof(NHibernateExtensions).Assembly.ExportedTypes);
-        HbmMapping domainMapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
-
-        var configuration = new Configuration();
-        configuration.DataBaseIntegration(c =>
-        {
-            c.Dialect<PostgreSQLDialect>();
-            c.ConnectionString = connectionString;
-            c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-            c.SchemaAction = SchemaAutoAction.Validate;
-            c.LogFormattedSql = true;
-            c.LogSqlInConsole = true;
-        });
-        configuration.AddMapping(domainMapping);
-
-        var sessionFactory = configuration.BuildSessionFactory();
-
-        services.AddSingleton(sessionFactory);
-        services.AddScoped(factory => sessionFactory.OpenSession());
-        services.AddScoped<IMapperSessionPG, NHibernateMapperSessionPG>();
+        // open session to DB configuration
+        services.AddSingleton(factory => sessionFactory.OpenSession());
+        services.AddSingleton<IMapperSession, NHibernateMapperSession>();
 
         return services;
     }

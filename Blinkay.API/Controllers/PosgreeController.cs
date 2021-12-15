@@ -19,7 +19,7 @@ namespace Blinkay.API.Controllers
         private IPosgreeService _posgreeService;
 
         public PosgreeController(ILogger<PosgreeController> logger,
-                                  IMapperSessionPG session)
+                                  ApplicationContext session)
         {
             _logger = logger;
             _posgreeService = new PosgreeService(session);

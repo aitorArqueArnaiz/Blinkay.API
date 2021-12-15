@@ -9,9 +9,9 @@ namespace Blinkay.Domain.Services
 {
     public class PosgreeService : IPosgreeService
     {
-        private IMapperSessionPG _session;
+        private readonly ApplicationContext _session;
 
-        public PosgreeService(IMapperSessionPG session)
+        public PosgreeService(ApplicationContext session)
         {
             this._session = session;
         }
@@ -24,18 +24,15 @@ namespace Blinkay.Domain.Services
                 try
                 {
                     user = new User();
-                    _session.BeginTransaction();
-                    await _session.SaveOrUpdate(user);
-                    await _session.Commit();
+                    await _session.AddAsync(user);
+                    await _session.SaveChangesAsync();
                 }
                 catch (Exception error)
                 {
                     // log exception here
-                    await _session.Rollback();
                 }
                 finally
                 {
-                    _session.CloseTransaction();
                 }
             }
             return user;
@@ -58,17 +55,14 @@ namespace Blinkay.Domain.Services
                     }
                     rndUser.Info = StringHelper.CreateRandomString(100);
 
-                    _session.BeginTransaction();
-                    await _session.SaveOrUpdate(rndUser);
-                    await _session.Commit();
+                    await _session.AddAsync(rndUser);
+                    await _session.SaveChangesAsync();
                 }
                 catch (Exception error)
                 {
-                    await _session.Rollback();
                 }
                 finally
                 {
-                    _session.CloseTransaction();
                 }
             }
         }
