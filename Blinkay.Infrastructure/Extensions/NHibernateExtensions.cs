@@ -45,7 +45,7 @@ public static class NHibernateExtensions
             c.Dialect<PostgreSQLDialect>();
             c.ConnectionString = connectionString;
             c.KeywordsAutoImport = Hbm2DDLKeyWords.AutoQuote;
-            c.SchemaAction = SchemaAutoAction.Create;
+            c.SchemaAction = SchemaAutoAction.Validate;
             c.LogFormattedSql = true;
             c.LogSqlInConsole = true;
         });

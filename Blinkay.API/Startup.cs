@@ -28,7 +28,7 @@ namespace Blinkay.API
             });
 
             services.AddNHibernateMySql("server=127.0.0.1;uid=root;pwd=aA2221xT;database=blinkay");
-            services.AddNHibernatePG("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;");
+            //services.AddNHibernatePG("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;");
 
             // Add framework services.
             services.AddMvc(options =>
