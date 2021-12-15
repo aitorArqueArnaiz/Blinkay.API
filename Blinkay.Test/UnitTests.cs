@@ -3,7 +3,7 @@ using Blinkay.Domain.Services;
 using Blinkay.API.DTOs;
 using Moq;
 using NUnit.Framework;
-using System.Linq;
+using System;
 
 namespace Blinkay.UnitTests
 {
@@ -45,24 +45,29 @@ namespace Blinkay.UnitTests
             };
 
             // Act
-            this._mySqlService.MySQLInsertion(request.NumRegistres);
+            var userAdded = this._mySqlService.MySQLInsertion(request.NumRegistres);
 
             // Assert
             Assert.NotNull(this._session.Object.Users);
-            Assert.True(this._session.Object.Users.Any());
+            Assert.NotNull(userAdded);
+            Assert.AreEqual(userAdded.Id, 1);
         }
 
         [Test]
         [Author("Aitor Arqué Arnaiz")]
         [Description("Test intended to test select plus update MySql use case.")]
-        public void mysql_select_plus_update_test()
+        public void mysql_select_plus_update_with_empty_list_test()
         {
             // Arrange
+            AddEntityRequest request = new AddEntityRequest()
+            {
+                NumThreads = 60,
+                NumRegistres = 30
+            };
 
-            // Act
+            // Act & Assert
+            Assert.Throws<Exception>(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
 
-            // Assert
-            Assert.Pass();
         }
 
         [Test]

@@ -4,6 +4,7 @@ using Blinkay.Infrastructure.Entities;
 using NHibernate.Linq;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Blinkay.Domain.Services
 {
@@ -15,14 +16,16 @@ namespace Blinkay.Domain.Services
         {
             this._session = mysqlService;
         }
-        public async void MySQLInsertion(int iNumRegistries)
+        public async Task<User> MySQLInsertion(int iNumRegistries)
         {
-            for(int i = 0; i < iNumRegistries; i++)
+            User user = null;
+            for (int i = 0; i < iNumRegistries; i++)
             {
                 try
                 {
+                    user = new User();
                     _session.BeginTransaction();
-                    await _session.SaveOrUpdate(new User());
+                    await _session.SaveOrUpdate(user);
                     await _session.Commit();
                 }
                 catch (Exception error)
@@ -35,11 +38,13 @@ namespace Blinkay.Domain.Services
                     _session.CloseTransaction();
                 }
             }
+            return user;
 
         }
 
         public async void MySQLSelectPlusUpdate(int iNumRegistries)
         {
+            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
             {
                 try
@@ -60,7 +65,6 @@ namespace Blinkay.Domain.Services
                 }
                 catch (Exception error)
                 {
-                    // log exception here
                     await _session.Rollback();
                 }
                 finally

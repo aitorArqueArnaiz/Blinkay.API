@@ -1,9 +1,11 @@
-﻿using Blinkay.Domain.Interfaces;
+﻿using Blinkay.API.DTOs;
+using Blinkay.Domain.Interfaces;
 using Blinkay.Domain.Services;
 using Blinkay.Infrastructure.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Blinkay.API.Controllers
@@ -17,27 +19,36 @@ namespace Blinkay.API.Controllers
         private IPosgreeService _posgreeService;
 
         public PosgreeController(ILogger<PosgreeController> logger,
-                                  IMapperSession session)
+                                  IMapperSessionPG session)
         {
             _logger = logger;
             _posgreeService = new PosgreeService(session);
         }
 
         [HttpPost("pg-insertion")]
-        public async Task<IActionResult> PGInsertion(int iNumRegistries, int iNumThreads)
+        public async Task<IActionResult> PGInsertion([FromBody] AddEntityRequest request)
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                for (int i = 0; i < request.NumThreads; i++)
+                {
+                    await Task.Factory.StartNew(() => this._posgreeService.PGInsertion(request.NumRegistres));
+                }
+                sw.Stop();
 
-                return Ok(0);
+                var response = new AddEntityResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during MySql insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
 

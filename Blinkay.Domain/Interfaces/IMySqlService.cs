@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Blinkay.Infrastructure.Entities;
 using System.Threading.Tasks;
 
 namespace Blinkay.Domain.Interfaces
@@ -13,7 +10,7 @@ namespace Blinkay.Domain.Interfaces
         /// </summary>
         /// <param name="iNumRegistries"></param>
         /// <returns></returns>
-        void MySQLInsertion(int iNumRegistries);
+        Task<User> MySQLInsertion(int iNumRegistries);
 
         /// <summary>
         /// MySql select plus update use case.

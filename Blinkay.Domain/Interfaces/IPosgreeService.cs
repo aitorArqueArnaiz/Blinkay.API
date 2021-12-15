@@ -1,4 +1,7 @@
-﻿namespace Blinkay.Domain.Interfaces
+﻿using Blinkay.Infrastructure.Entities;
+using System.Threading.Tasks;
+
+namespace Blinkay.Domain.Interfaces
 {
     public interface IPosgreeService
     {
@@ -6,25 +9,22 @@
         /// Postgree insertion use case.
         /// </summary>
         /// <param name="iNumRegistries"></param>
-        /// <param name="iNumThreads"></param>
         /// <returns></returns>
-        int PGInsertion(int iNumRegistries, int iNumThreads);
+        Task<User> PGInsertion(int iNumRegistries);
 
         /// <summary>
         /// postgree select plus update use case.
         /// </summary>
         /// <param name="iNumRegistries"></param>
-        /// <param name="iNumThreads"></param>
         /// <returns></returns>
-        int PGSelectPlusUpdate(int iNumRegistries, int iNumThreads);
+        int PGSelectPlusUpdate(int iNumRegistries);
 
         /// <summary>
         /// Select plus update plus insertion use case.
         /// </summary>
         /// <param name="iNumRegistries"></param>
-        /// <param name="iNumThreads"></param>
         /// <returns></returns>
 
-        int PGSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads);
+        int PGSelectPlusUpdatePlusInsertion(int iNumRegistries);
     }
 }
