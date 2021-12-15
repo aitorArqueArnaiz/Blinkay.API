@@ -74,11 +74,11 @@ namespace Blinkay.Domain.Services
             }
         }
 
-        public void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
+        public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
         {
             for (int i = 0; i < iNumRegistries; i++)
             {
-                this.MySQLInsertion(iNumRegistries);
+                await this.MySQLInsertion(iNumRegistries);
                 this.MySQLSelectPlusUpdate(iNumRegistries);
             }
         }

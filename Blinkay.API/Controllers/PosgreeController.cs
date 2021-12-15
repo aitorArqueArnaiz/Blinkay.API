@@ -47,44 +47,62 @@ namespace Blinkay.API.Controllers
             catch (Exception error)
             {
                 // log exception here
-                _logger.LogError($"Exception ocurred during MySql insertion operation {error.Message}");
+                _logger.LogError($"Exception ocurred during Postgre insertion operation {error.Message}");
                 return BadRequest();
             }
         }
 
-        [HttpPatch("pg-select")]
-        public async Task<IActionResult> PGSelectPlusUpdate(int iNumRegistries, int iNumThreads)
+        [HttpPatch("pg-select-plus-update")]
+        public async Task<IActionResult> PGSelectPlusUpdate([FromBody] SelectPlusUpdateRequest request)
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                for (int i = 0; i < request.NumThreads; i++)
+                {
+                    await Task.Factory.StartNew(() => this._posgreeService.PGSelectPlusUpdate(request.NumRegistres));
+                }
+                sw.Stop();
 
-                return Ok(0);
+                var response = new SelectPlusUpdateResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during Postgre insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
 
-        [HttpPatch("pg-select-plus-insertion")]
-        public async Task<IActionResult> PGSelectPlusUpdatePlusInsertion(int iNumRegistries, int iNumThreads)
+        [HttpPatch("pg-select-plus-update-plus-insertion")]
+        public async Task<IActionResult> PGSelectPlusUpdatePlusInsertion([FromBody] SelectPlusUpdatePlusInsertionRequest request)
         {
             try
             {
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                for (int i = 0; i < request.NumThreads; i++)
+                {
+                    await Task.Factory.StartNew(() => this._posgreeService.PGSelectPlusUpdatePlusInsertion(request.NumRegistres));
+                }
+                sw.Stop();
 
-                return Ok(0);
+                var response = new SelectPlusUpdatePlusInsertionResponse()
+                {
+                    TimeOfExecution = sw.ElapsedMilliseconds
+                };
+                return Ok(response);
             }
-            catch
+            catch (Exception error)
             {
                 // log exception here
+                _logger.LogError($"Exception ocurred during Postgre select plus update plus insertion operation {error.Message}");
                 return BadRequest();
-            }
-            finally
-            {
             }
         }
     }
