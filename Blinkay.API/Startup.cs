@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Npgsql;
+using System;
 
 namespace Blinkay.API
 {
@@ -41,13 +41,8 @@ namespace Blinkay.API
             // Add logging service
             services.AddLogging(configure => configure.AddConsole());
 
-            var connectionString = Configuration["Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;"];
-            var dbPassword = Configuration["aA2221xT"];
-            var builder = new NpgsqlConnectionStringBuilder(connectionString)
-            {
-                Password = dbPassword
-            };
-            services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(builder.ConnectionString));
+
+            services.AddDbContext<ApplicationContext>(options => options.UseNpgsql("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=aA2221xT;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

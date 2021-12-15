@@ -17,7 +17,7 @@ namespace Blinkay.Domain.Interfaces
         /// </summary>
         /// <param name="iNumRegistries"></param>
         /// <returns></returns>
-        void MySQLSelectPlusUpdate(int iNumRegistries);
+        Task MySQLSelectPlusUpdate(int iNumRegistries);
 
         /// <summary>
         /// MySql Select plus update plus insertion use case.

@@ -4,6 +4,9 @@ using Blinkay.API.DTOs;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
+using Blinkay.Infrastructure.Entities;
+using System.Collections.Generic;
 
 namespace Blinkay.UnitTests
 {
@@ -24,6 +27,7 @@ namespace Blinkay.UnitTests
         {
             this._session = new Mock<IMapperSession>();
             this._mySqlService = new MySqlService(this._session.Object);
+
         }
 
         [TearDown]
@@ -38,6 +42,7 @@ namespace Blinkay.UnitTests
         public void mysql_insertion_test()
         {
             // Arrange
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -51,14 +56,16 @@ namespace Blinkay.UnitTests
             Assert.NotNull(this._session.Object.Users);
             Assert.NotNull(userAdded);
             Assert.AreEqual(userAdded.Id, 1);
+            Assert.True(this._session.Object.Users.Count() > 0);
         }
 
         [Test]
         [Author("Aitor Arqué Arnaiz")]
-        [Description("Test intended to test select plus update MySql use case.")]
+        [Description("Test intended to test select plus update with empty list MySql use case.")]
         public void mysql_select_plus_update_with_empty_list_test()
         {
             // Arrange
+            this._session.Setup(x => x.Users).Returns(new List<User>() { }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -66,7 +73,29 @@ namespace Blinkay.UnitTests
             };
 
             // Act & Assert
-            Assert.Throws<Exception>(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
+            Assert.ThrowsAsync<Exception>(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
+
+        }
+
+        [Test]
+        [Author("Aitor Arqué Arnaiz")]
+        [Description("Test intended to test select plus update MySql use case.")]
+        public void mysql_select_plus_update_test()
+        {
+            // Arrange
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            AddEntityRequest request = new AddEntityRequest()
+            {
+                NumThreads = 60,
+                NumRegistres = 30
+            };
+
+            // Act
+            this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres);
+
+            // Assert
+            Assert.NotNull(this._session.Object.Users);
+            Assert.True(this._session.Object.Users.Count() > 0);
 
         }
 
@@ -76,11 +105,19 @@ namespace Blinkay.UnitTests
         public void mysql_select_plus_update_plus_insertion_test()
         {
             // Arrange
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            AddEntityRequest request = new AddEntityRequest()
+            {
+                NumThreads = 60,
+                NumRegistres = 30
+            };
 
             // Act
+            this._mySqlService.MySQLSelectPlusUpdatePlusInsertion(request.NumRegistres);
 
             // Assert
-            Assert.Pass();
+            Assert.NotNull(this._session.Object.Users);
+            Assert.True(this._session.Object.Users.Count() > 0);
         }
 
         [Test]

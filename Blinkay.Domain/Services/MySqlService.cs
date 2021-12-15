@@ -18,6 +18,7 @@ namespace Blinkay.Domain.Services
         }
         public async Task<User> MySQLInsertion(int iNumRegistries)
         {
+            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             User user = null;
             for (int i = 0; i < iNumRegistries; i++)
             {
@@ -42,7 +43,7 @@ namespace Blinkay.Domain.Services
 
         }
 
-        public async void MySQLSelectPlusUpdate(int iNumRegistries)
+        public async Task MySQLSelectPlusUpdate(int iNumRegistries)
         {
             if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
@@ -60,12 +61,12 @@ namespace Blinkay.Domain.Services
                     rndUser.Info = StringHelper.CreateRandomString(100);
 
                     _session.BeginTransaction();
-                    await _session.SaveOrUpdate(rndUser);
-                    await _session.Commit();
+                     await _session.SaveOrUpdate(rndUser);
+                     await _session.Commit();
                 }
                 catch (Exception error)
                 {
-                    await _session.Rollback();
+                     await _session.Rollback();
                 }
                 finally
                 {
@@ -76,6 +77,7 @@ namespace Blinkay.Domain.Services
 
         public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
         {
+            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
             {
                 await this.MySQLInsertion(iNumRegistries);

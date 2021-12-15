@@ -24,15 +24,12 @@ namespace Blinkay.Domain.Services
                 try
                 {
                     user = new User();
-                    await _session.AddAsync(user);
+                    _session.Users.Add(user);
                     await _session.SaveChangesAsync();
                 }
                 catch (Exception error)
                 {
-                    // log exception here
-                }
-                finally
-                {
+                    throw new Exception(error.Message);
                 }
             }
             return user;
@@ -60,9 +57,7 @@ namespace Blinkay.Domain.Services
                 }
                 catch (Exception error)
                 {
-                }
-                finally
-                {
+                    throw new Exception(error.Message);
                 }
             }
         }
