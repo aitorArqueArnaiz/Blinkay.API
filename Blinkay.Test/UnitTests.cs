@@ -125,7 +125,6 @@ namespace Blinkay.UnitTests
         public void postgres_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -136,10 +135,8 @@ namespace Blinkay.UnitTests
             var userAdded = this._postgresService.PGInsertion(request.NumRegistres);
 
             // Assert
-            Assert.NotNull(this._session.Object.Users);
             Assert.NotNull(userAdded);
             Assert.AreEqual(userAdded.Id, 2);
-            Assert.True(this._session.Object.Users.Count() > 0);
         }
 
         [Test]
@@ -148,7 +145,6 @@ namespace Blinkay.UnitTests
         public void postgre_select_plus_update_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -159,8 +155,6 @@ namespace Blinkay.UnitTests
             this._postgresService.PGSelectPlusUpdate(request.NumRegistres);
 
             // Assert
-            Assert.NotNull(this._session.Object.Users);
-            Assert.True(this._session.Object.Users.Count() > 0);
         }
 
         [Test]
@@ -169,7 +163,6 @@ namespace Blinkay.UnitTests
         public void postgre_select_plus_update_plus_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -180,8 +173,6 @@ namespace Blinkay.UnitTests
             this._postgresService.PGSelectPlusUpdatePlusInsertion(request.NumRegistres);
 
             // Assert
-            Assert.NotNull(this._session.Object.Users);
-            Assert.True(this._session.Object.Users.Count() > 0);
         }
     }
 }
