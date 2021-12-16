@@ -51,8 +51,8 @@ namespace Blinkay.Domain.Services
                     }
                     rndUser.userinfo = StringHelper.CreateRandomString(100);
 
-                    await _session.AddAsync(rndUser);
-                    await _session.SaveChangesAsync();
+                    _session.Add(rndUser);
+                    _session.SaveChanges();
                 }
                 catch (Exception error)
                 {

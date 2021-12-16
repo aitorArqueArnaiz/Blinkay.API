@@ -59,7 +59,7 @@ namespace Blinkay.UnitTests
         public void mysql_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -78,29 +78,11 @@ namespace Blinkay.UnitTests
 
         [Test]
         [Author("Aitor Arqué Arnaiz")]
-        [Description("Test intended to test select plus update with empty list MySql use case.")]
-        public void mysql_select_plus_update_with_empty_list_test()
-        {
-            // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { }.AsQueryable());
-            AddEntityRequest request = new AddEntityRequest()
-            {
-                NumThreads = 60,
-                NumRegistres = 30
-            };
-
-            // Act & Assert
-            Assert.ThrowsAsync<Exception>(() => this._mySqlService.MySQLSelectPlusUpdate(request.NumRegistres));
-
-        }
-
-        [Test]
-        [Author("Aitor Arqué Arnaiz")]
         [Description("Test intended to test select plus update MySql use case.")]
         public void mysql_select_plus_update_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -122,7 +104,7 @@ namespace Blinkay.UnitTests
         public void mysql_select_plus_update_plus_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -143,7 +125,7 @@ namespace Blinkay.UnitTests
         public void postgres_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -166,7 +148,7 @@ namespace Blinkay.UnitTests
         public void postgre_select_plus_update_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
@@ -187,7 +169,7 @@ namespace Blinkay.UnitTests
         public void postgre_select_plus_update_plus_insertion_test()
         {
             // Arrange
-            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { Id = 0, Info = "blablabla" }, new User() { Id = 1, Info = "testtesttest" } }.AsQueryable());
+            this._session.Setup(x => x.Users).Returns(new List<User>() { new User() { iduser = 0, userinfo = "blablabla" }, new User() { iduser = 1, userinfo = "testtesttest" } }.AsQueryable());
             AddEntityRequest request = new AddEntityRequest()
             {
                 NumThreads = 60,
