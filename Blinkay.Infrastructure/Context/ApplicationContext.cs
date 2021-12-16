@@ -13,7 +13,8 @@ public class ApplicationContext : DbContext
         modelBuilder.HasDefaultSchema("Blinkay");
 
         modelBuilder.Entity<User>()
-          .HasKey(b => b.iduser)
+                   .Property(f => f.iduser)
+                   .ValueGeneratedOnAdd();
 
         base.OnModelCreating(modelBuilder);
     }
