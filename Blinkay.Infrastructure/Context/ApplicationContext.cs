@@ -3,14 +3,22 @@ using Microsoft.EntityFrameworkCore;
 
 public class ApplicationContext : DbContext
 {
-    public ApplicationContext() : base()
-    {
-    }
 
     public ApplicationContext(DbContextOptions options) : base(options)
     {
     }
-    public DbSet<User> Users { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDefaultSchema("Blinkay");
+
+        modelBuilder.Entity<User>()
+          .HasKey(b => b.iduser)
+
+        base.OnModelCreating(modelBuilder);
+    }
+
+    public DbSet<User> users { get; set; }
 
 
 }

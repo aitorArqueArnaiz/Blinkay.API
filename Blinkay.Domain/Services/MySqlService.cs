@@ -18,7 +18,6 @@ namespace Blinkay.Domain.Services
         }
         public async Task<User> MySQLInsertion(int iNumRegistries)
         {
-            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             User user = null;
             for (int i = 0; i < iNumRegistries; i++)
             {
@@ -45,20 +44,19 @@ namespace Blinkay.Domain.Services
 
         public async Task MySQLSelectPlusUpdate(int iNumRegistries)
         {
-            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
             {
                 try
                 {
                     var rnd = new Random();
                     var rndId = rnd.Next(1, this._session.Users.Count() - 1);
-                    var rndUser = this._session.Users.Where(u => u.Id == rndId).FirstOrDefault();
+                    var rndUser = this._session.Users.Where(u => u.iduser == rndId).FirstOrDefault();
                     while(rndUser == null)
                     {
                         rndId = rnd.Next(1, this._session.Users.Count() - 1);
-                        rndUser = this._session.Users.Where(u => u.Id == rndId).FirstOrDefault();
+                        rndUser = this._session.Users.Where(u => u.iduser == rndId).FirstOrDefault();
                     }
-                    rndUser.Info = StringHelper.CreateRandomString(100);
+                    rndUser.userinfo = StringHelper.CreateRandomString(100);
 
                     _session.BeginTransaction();
                      await _session.SaveOrUpdate(rndUser);
@@ -77,11 +75,10 @@ namespace Blinkay.Domain.Services
 
         public async void MySQLSelectPlusUpdatePlusInsertion(int iNumRegistries)
         {
-            if (!this._session.Users.Any()) throw new Exception("No users in repository.");
             for (int i = 0; i < iNumRegistries; i++)
             {
                 await this.MySQLInsertion(iNumRegistries);
-                this.MySQLSelectPlusUpdate(iNumRegistries);
+                await this.MySQLSelectPlusUpdate(iNumRegistries);
             }
         }
     }

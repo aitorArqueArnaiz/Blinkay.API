@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using Blinkay.Infrastructure.Entities;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blinkay.UnitTests
 {
@@ -30,16 +31,20 @@ namespace Blinkay.UnitTests
         /// <summary>
         /// The EF repository mock.
         /// </summary>
-        private Mock<ApplicationContext> _context;
+        private ApplicationContext _context;
 
         [SetUp]
         public void Setup()
         {
+            var options = new DbContextOptionsBuilder<ApplicationContext>()
+                            .EnableSensitiveDataLogging()
+                            .Options;
+            this._context = new ApplicationContext(options);
+
             this._session = new Mock<IMapperSession>();
-            this._context = new Mock<ApplicationContext>();
 
             this._mySqlService = new MySqlService(this._session.Object);
-            this._postgresService = new PosgreeService(this._context.Object);
+            this._postgresService = new PosgreeService(this._context);
         }
 
         [TearDown]
@@ -190,7 +195,7 @@ namespace Blinkay.UnitTests
             };
 
             // Act
-            this._mySqlService.MySQLSelectPlusUpdatePlusInsertion(request.NumRegistres);
+            this._postgresService.PGSelectPlusUpdatePlusInsertion(request.NumRegistres);
 
             // Assert
             Assert.NotNull(this._session.Object.Users);

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Blinkay.Infrastructure.Entities
@@ -8,19 +9,20 @@ namespace Blinkay.Infrastructure.Entities
     {
         public User()
         {
-            this.Info = this.CreateRandomString(100);
+            this.userinfo = this.CreateRandomString(100);
         }
         /// <summary>
         /// user table primary key.
         /// </summary>
         [JsonProperty("iduser")]
-        public virtual int Id { get; set; }
+        [Key]
+        public virtual int iduser { get; set; }
 
         /// <summary>
         /// User table information string/Json.
         /// </summary>
         [JsonProperty("userinfo")]
-        public virtual string Info { get; set; }
+        public virtual string userinfo { get; set; }
 
         /// <summary>
         /// Method that creates/generated a new random string for user info DB column.

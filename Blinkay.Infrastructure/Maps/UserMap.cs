@@ -7,13 +7,13 @@ public class UserMap : ClassMapping<User>
 {
     public UserMap()
     {
-        Id(x => x.Id, x =>
+        Id(x => x.iduser, x =>
         {
             x.Generator(Generators.Increment);
             x.Column("iduser");
         });
 
-        Property(b => b.Info, x =>
+        Property(b => b.userinfo, x =>
         {
             x.Length(500);
             x.Column("userinfo");
